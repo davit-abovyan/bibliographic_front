@@ -1,0 +1,31 @@
+<div class="example-block">
+  <div class="example-block__item">
+    <ngx-select [formControl]="control_1"
+                [allowClear]="true"
+                [items]="items" optionValueField="id" optionTextField="name"
+                [disabled]="ngxDisabled"
+                [(ngModel)]="ngxValue"
+                placeholder="-- ընտրեք --">
+
+      <ng-template ngx-select-option ngx-select-option-selected let-option let-rev="isReviewer">
+        <span class="color-box" [style]="style('background-color:' + option.value)"></span>
+        <span [innerHtml]="rev"></span>
+        ({{option.data.isReviewer}})
+      </ng-template>
+
+      <ng-template ngx-select-option-not-found>
+        Ոչ մի արդյունք
+      </ng-template>
+
+    </ngx-select>
+    <p></p>
+    <div class="alert alert-secondary">
+      <pre>{{ngxValue | json}}</pre>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="ngxDisabled = !ngxDisabled">
+        {{ngxDisabled ? 'Enable' : 'Disable'}}
+      </button>
+    </div>
+  </div>
+</div>
