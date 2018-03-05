@@ -10,7 +10,6 @@ import { TypeaheadComponent } from './components/typeahead/typeahead.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSelectModule } from 'ngx-select-ex';
-import { ObjectSelectConverterService } from './util/object-select-converter.service';
 import { TopNemuComponent } from './components/top-nemu/top-nemu.component';
 import { BohComponent } from './components/tables/boh/boh.component';
 import { JournalComponent } from './components/tables/journal/journal.component';
@@ -45,8 +44,7 @@ import { WorkAreaComponent } from './components/work-area/work-area.component';
     ButtonsModule.forRoot()
   ],
   providers: [
-    ApiService,
-    ObjectSelectConverterService
+    ApiService
   ],
   bootstrap: [AppComponent]
 })
