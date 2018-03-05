@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class ApiService {
 
-  private operatorUrl = 'http://localhost:8080/api/v1.0/operator/search/';
+  private operatorUrl = 'http://63.142.252.60:8080/api/v1.0/operator/search/';
 
   constructor(private http: HttpClient) {
   }
@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   selectableOperator(array: string[]): Array<any> {
-    return _.map(array, (element: Operator) => new Operator(element.id, element.name, element.isReviewer));
+    return _.map(array, (element: Operator) => new Operator(element.id, element.name, element.reviewer));
   }
 
 

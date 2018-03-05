@@ -6,7 +6,7 @@ import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-typeahead',
   templateUrl: './typeahead.component.html',
-  styleUrls: ['./typeahead.component.css'],
+  styleUrls: ['./typeahead.component.less'],
   encapsulation: ViewEncapsulation.None  // Enable dynamic HTML styles
 })
 

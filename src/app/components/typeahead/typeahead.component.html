@@ -2,7 +2,7 @@
   <div class="example-block__item">
     <ngx-select [formControl]="control_1"
                 [allowClear]="true"
-                [items]="items" optionValueField="id" optionTextField="name"
+                [items]="items" optionValueField="id" optionTextField="text"
                 [disabled]="ngxDisabled"
                 [(ngModel)]="ngxValue"
                 placeholder="-- ընտրեք --">
@@ -10,7 +10,7 @@
       <ng-template ngx-select-option ngx-select-option-selected let-option let-rev="isReviewer">
         <span class="color-box" [style]="style('background-color:' + option.value)"></span>
         <span [innerHtml]="rev"></span>
-        ({{option.data.isReviewer}})
+        ({{option.data.reviewer}})
       </ng-template>
 
       <ng-template ngx-select-option-not-found>
