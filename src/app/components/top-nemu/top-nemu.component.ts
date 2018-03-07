@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-top-nemu',
@@ -7,8 +8,11 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class TopNemuComponent implements OnInit {
 
+  data: object[];
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
-  constructor() { }
+  constructor(public dataService: DataService) {
+    this.data = this.dataService.menuItems;
+  }
 
   ngOnInit() {
   }

@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { TabsModule, ButtonsModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 import { AppComponent } from './app.component';
 import { TypeaheadComponent } from './components/typeahead/typeahead.component';
 import { ApiService } from './services/api.service';
+import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { TopNemuComponent } from './components/top-nemu/top-nemu.component';
@@ -41,10 +43,12 @@ import { WorkAreaComponent } from './components/work-area/work-area.component';
     NgxSelectModule,
     NgbModule.forRoot(),
     TabsModule.forRoot(),
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    AngularDraggableModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

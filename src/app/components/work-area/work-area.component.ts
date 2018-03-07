@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import * as _ from 'lodash';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-work-area',
@@ -7,10 +9,38 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class WorkAreaComponent implements OnInit {
 
-  @Input() page: string;
-  constructor() { }
+  // used for dragability
+  useHandle = true;
+  inBounds = true;
+  edge = {
+    top: true,
+    bottom: true,
+    left: true,
+    right: true
+  };
+
+  // used instead of global data
+  data: object[];
+
+  @Input() page: string[];
+  constructor(public dataService: DataService) {
+    this.data = this.dataService.menuItems;
+    console.log(this.data);
+  }
 
   ngOnInit() {
+  }
+
+  closeSection(sec: string): void {
+    _.pull(this.page, sec);
+  }
+
+  checkEdge(event) {
+    this.edge = event;
+  }
+
+  focuseSelection(): void {
+  // this.zIndex = this.zIndex + 1;
   }
 
 }

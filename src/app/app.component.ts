@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,11 +8,11 @@ import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef } 
 })
 export class AppComponent {
   title = 'DBMS for bibliographic data';
-  state = '';
+  state = [];
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   onSelect(page: string): void {
-    this.state = page;
+    this.state.push(page);
   }
 }

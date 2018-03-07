@@ -1,18 +1,18 @@
-<div *ngIf="page == 'boh'">
-  <app-boh></app-boh>
-</div>
-<div *ngIf="page == 'journal'">
-  <app-journal></app-journal>
-</div>
-<div *ngIf="page == 'operator'">
-  <app-operator></app-operator>
-</div>
-<div *ngIf="page == 'scienceField'">
-  <app-science-field></app-science-field>
-</div>
-<div *ngIf="page == 'statistics'">
-  <app-statistics></app-statistics>
-</div>
-<div *ngIf="page == 'person'">
-  <app-person></app-person>
+<div class="frame" #myBounds>
+  <div *ngFor="let menu of data">
+    <div *ngFor="let row of menu.rows">
+      <div ngDraggable [handle]="myHandle" [bounds]="myBounds" [inBounds]="inBounds" *ngIf="page.indexOf(row.key)>-1" class="window">
+        <div #myHandle class="window-menu">
+          <span class="window-heading unselectable">{{row.arm}}</span>
+          <div class="close" (click)="closeSection(row.key)"><i class="fa fa-close fa-fw"></i></div>
+        </div>
+        <div class="window-body" *ngIf="row.key == 'operator'"><app-operator></app-operator></div>
+        <div class="window-body" *ngIf="row.key == 'person'"><app-person></app-person></div>
+        <div class="window-body" *ngIf="row.key == 'science-field'"><app-science-field></app-science-field></div>
+        <div class="window-body" *ngIf="row.key == 'boh'"><app-boh></app-boh></div>
+        <div class="window-body" *ngIf="row.key == 'statistics'"><app-statistics></app-statistics></div>
+        <div class="window-body" *ngIf="row.key == 'journal'"><app-journal></app-journal></div>
+      </div>
+    </div>
+  </div>
 </div>
