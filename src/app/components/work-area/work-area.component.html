@@ -1,7 +1,8 @@
 <div class="frame" #myBounds>
   <div *ngFor="let menu of data">
     <div *ngFor="let row of menu.rows">
-      <div ngDraggable [handle]="myHandle" [bounds]="myBounds" [inBounds]="inBounds" *ngIf="page.indexOf(row.key)>-1" class="window">
+      <div *ngIf="page.indexOf(row.key)>-1" id="{{row.key}}" class="window window-size-{{row.size}}" (click)="focuseSelection(row.key)"
+           ngDraggable [handle]="myHandle" [bounds]="myBounds" [inBounds]="inBounds">
         <div #myHandle class="window-menu">
           <span class="window-heading unselectable">{{row.arm}}</span>
           <div class="close" (click)="closeSection(row.key)"><i class="fa fa-close fa-fw"></i></div>

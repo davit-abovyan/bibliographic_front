@@ -10,6 +10,7 @@ import {DataService} from '../../services/data.service';
 export class WorkAreaComponent implements OnInit {
 
   // used for dragability
+  zInd = 1;
   useHandle = true;
   inBounds = true;
   edge = {
@@ -39,8 +40,10 @@ export class WorkAreaComponent implements OnInit {
     this.edge = event;
   }
 
-  focuseSelection(): void {
-  // this.zIndex = this.zIndex + 1;
+  focuseSelection(id: string): void {
+    this.zInd = +this.zInd + 1;
+    document.getElementById(id).style.zIndex = '' + this.zInd;
+    console.log(this.zInd);
   }
 
 }

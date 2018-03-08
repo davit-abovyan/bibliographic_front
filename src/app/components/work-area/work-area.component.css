@@ -1,5 +1,5 @@
 .frame{
-  width: 600px;
+  width: 900px;
   height: 600px;
   border: 1px solid red;
 }
@@ -9,7 +9,26 @@
   position:relative;
   maring:10px;
   padding: 0px;
+  z-index: 1;
+}
+
+.window-size-XS{
+  width:100px;
+}
+.window-size-S{
+  width:200px;
+}
+.window-size-M{
+  width:300px;
+}
+.window-size-L{
   width:500px;
+}
+.window-size-XL{
+  width:700px;
+}
+.window-size-XXL{
+  width:100%;
 }
 
 .window-heading{
@@ -17,7 +36,6 @@
   color: white;
   font-weight: bold;
   text-indent: 5px;
-  cursor: move;
 }
 
 .window-body{
@@ -40,7 +58,9 @@
   height:10px;
   width: 10px;
 }
-
+.ng-draggable {
+  cursor: move;
+}
 .unselectable {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;

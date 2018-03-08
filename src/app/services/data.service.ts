@@ -7,12 +7,12 @@ export class DataService {
     {
       'menu': 'info',
       'rows': [
-        {'key': 'operator', 'arm': 'Օպերատոր'},
-        {'key': 'person', 'arm': 'Անձ'},
-        {'key': 'science-field', 'arm': 'Գիտության ոլորտ'},
-        {'key': 'boh', 'arm': 'ԲՈՀ'},
-        {'key': 'statistics', 'arm': 'Վիճակագրություն'},
-        {'key': 'journal', 'arm': 'Ամսագիր'}
+        {'key': 'operator', 'arm': 'Օպերատոր', 'size': 'XS'},
+        {'key': 'person', 'arm': 'Անձ', 'size': 'S'},
+        {'key': 'science-field', 'arm': 'Գիտության ոլորտ', 'size': 'M'},
+        {'key': 'boh', 'arm': 'ԲՈՀ', 'size': 'L'},
+        {'key': 'statistics', 'arm': 'Վիճակագրություն', 'size': 'XL'},
+        {'key': 'journal', 'arm': 'Ամսագիր', 'size': 'XXL'}
       ],
       'arm': 'Տեղեկատու'
     },
