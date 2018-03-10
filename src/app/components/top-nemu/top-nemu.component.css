@@ -2,3 +2,15 @@
   color: #161822;
   background-color: #cddbf2;
 }
+
+
+.top-menu{
+  width: 100%;
+  height: 40px;
+  background-color: #337ab7;
+}
+
+.menu-icon-length {
+  position: relative;
+  right: 20px;
+}

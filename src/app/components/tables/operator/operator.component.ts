@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../../../services/api.service';
 
 @Component({
   selector: 'app-operator',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./operator.component.css']
 })
 export class OperatorComponent implements OnInit {
-
-  constructor() { }
+  public items: Array<any> = [];
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.getOperator();
   }
 
+  getOperator(): void {
+    this.apiService.getOperator().subscribe(operators => {
+      this.items = this.apiService.selectableOperator(operators);
+      console.log(operators);
+    });
+  }
 }

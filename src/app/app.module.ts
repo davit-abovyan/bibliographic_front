@@ -20,6 +20,8 @@ import { OperatorComponent } from './components/tables/operator/operator.compone
 import { ScienceFieldComponent } from './components/tables/science-field/science-field.component';
 import { StatisticsComponent } from './components/tables/statistics/statistics.component';
 import { WorkAreaComponent } from './components/work-area/work-area.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { ControllPanelComponent } from './components/controll-panel/controll-panel.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { WorkAreaComponent } from './components/work-area/work-area.component';
     OperatorComponent,
     ScienceFieldComponent,
     StatisticsComponent,
-    WorkAreaComponent
+    WorkAreaComponent,
+    LogoComponent,
+    ControllPanelComponent
   ],
   imports: [
     HttpClientModule,
