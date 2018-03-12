@@ -67,7 +67,7 @@ export class BohComponent implements OnInit {
   }
 
   edit(id: number): void {
-    if (this.editedBoh === '') {
+    if (this.editedBoh === undefined) {
       this.editRowId = -1;
     } else {
       const body = '{"id":"' + id + '", "name": "' + this.editedBoh + '"}';
