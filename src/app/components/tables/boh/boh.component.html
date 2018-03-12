@@ -1,3 +1,28 @@
-<p>
-  boh works!
-</p>
+<div class="container">
+  <div *ngIf='!isLoaded' style="margin: 20px auto;width: 50px;">
+    <i  class="fas fa-sync fa-spin"></i>
+  </div>
+  <table *ngIf='isLoaded' class="table table-hover">
+    <thead>
+    <tr>
+      <th class="table-id">Հ/Հ</th>
+      <th>Անվանումը</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of items">
+      <td>{{row.id}}</td>
+      <td>{{row.name}}</td>
+      <td class="toolbar">
+        <span style="cursor: pointer" (click)="removeBoh(row.id)"><i class="far fa-trash-alt fa-fw"></i></span>
+        <span style="cursor: pointer"><i class="far fa-copy fa-fw"></i></span>
+        <span style="cursor: pointer"><i class="far fa-edit fa-fw"></i></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <input [(ngModel)]="newBoh" class="form-control-sm" placeholder="Նոր ԲՈՀ"/>
+  <button (click)="addBoh()" class="btn btn-success"><i class="far fa-save fa-lg"></i></button>
+</div>
+

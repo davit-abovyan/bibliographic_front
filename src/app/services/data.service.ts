@@ -10,7 +10,7 @@ export class DataService {
         {'key': 'operator', 'arm': 'Օպերատոր', 'size': 'S', 'icon': 'user'},
         {'key': 'person', 'arm': 'Անձ', 'size': 'XS', 'icon': 'id-card'},
         {'key': 'science-field', 'arm': 'Գիտության ոլորտ', 'size': 'M'},
-        {'key': 'boh', 'arm': 'ԲՈՀ', 'size': 'L'},
+        {'key': 'boh', 'arm': 'ԲՈՀ', 'size': 'M'},
         {'key': 'statistics', 'arm': 'Վիճակագրություն', 'size': 'XL', 'icon': 'chart-bar'},
         {'key': 'journal', 'arm': 'Ամսագիր', 'size': 'XXL'}
       ],

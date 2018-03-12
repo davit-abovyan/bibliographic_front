@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { TabsModule, ButtonsModule } from 'ngx-bootstrap';
+import {TabsModule, ButtonsModule, ModalModule} from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AngularDraggableModule } from 'angular2-draggable';
@@ -22,6 +22,7 @@ import { StatisticsComponent } from './components/tables/statistics/statistics.c
 import { WorkAreaComponent } from './components/work-area/work-area.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { ControllPanelComponent } from './components/controll-panel/controll-panel.component';
+import {ConfirmationModalComponent} from './components/templates/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ControllPanelComponent } from './components/controll-panel/controll-pan
     StatisticsComponent,
     WorkAreaComponent,
     LogoComponent,
-    ControllPanelComponent
+    ControllPanelComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -48,11 +50,15 @@ import { ControllPanelComponent } from './components/controll-panel/controll-pan
     NgbModule.forRoot(),
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
-    AngularDraggableModule
+    AngularDraggableModule,
+    ModalModule.forRoot()
   ],
   providers: [
     ApiService,
     DataService
+  ],
+  entryComponents: [
+    ConfirmationModalComponent
   ],
   bootstrap: [AppComponent]
 })

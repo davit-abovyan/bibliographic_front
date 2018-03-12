@@ -1,0 +1,9 @@
+@import '../../../less/tables.less';
+
+.table-hover tbody tr:hover td.toolbar {
+  display: block;
+}
+
+.toolbar{
+  display: none;
+}

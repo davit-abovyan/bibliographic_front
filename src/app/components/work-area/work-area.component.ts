@@ -43,7 +43,6 @@ export class WorkAreaComponent implements OnInit {
   focuseSelection(id: string): void {
     this.zInd = +this.zInd + 1;
     document.getElementById(id).style.zIndex = '' + this.zInd;
-    console.log(this.zInd);
   }
 
 }

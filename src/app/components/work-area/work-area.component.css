@@ -23,20 +23,23 @@
   z-index: 1;
 }
 
-.window-size-XS{
+.window-size-XXS{
   width:100px;
 }
-.window-size-S{
+.window-size-XS{
   width:200px;
 }
-.window-size-M{
+.window-size-S{
   width:300px;
 }
-.window-size-L{
+.window-size-M{
   width:500px;
 }
-.window-size-XL{
+.window-size-L{
   width:700px;
+}
+.window-size-XL{
+  width:900px;
 }
 .window-size-XXL{
   width:100%;
