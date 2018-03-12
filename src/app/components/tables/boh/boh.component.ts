@@ -67,14 +67,19 @@ export class BohComponent implements OnInit {
   }
 
   edit(id: number): void {
-    const body = '{"id":"' + id + '", "name": "' + this.editedBoh + '"}';
-    this.apiService.editBoh(JSON.parse(body))
-      .subscribe(() => {
-        this.editedBoh = '';
-        this.editRowId = -1;
-        this.getBoh();
-      });
+    if (this.editedBoh === '') {
+      this.editRowId = -1;
+    } else {
+      const body = '{"id":"' + id + '", "name": "' + this.editedBoh + '"}';
+      this.apiService.editBoh(JSON.parse(body))
+        .subscribe(() => {
+          this.editedBoh = '';
+          this.editRowId = -1;
+          this.getBoh();
+        });
+    }
   }
+
 
   remove(id: string): void {
     this.apiService.removeBoh(id)
