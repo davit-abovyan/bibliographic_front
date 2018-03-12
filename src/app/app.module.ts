@@ -23,6 +23,7 @@ import { WorkAreaComponent } from './components/work-area/work-area.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { ControllPanelComponent } from './components/controll-panel/controll-panel.component';
 import {ConfirmationModalComponent} from './components/templates/confirmation-modal/confirmation-modal.component';
+import { NotificationModalComponent } from './components/templates/notification-modal/notification-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {ConfirmationModalComponent} from './components/templates/confirmation-mo
     WorkAreaComponent,
     LogoComponent,
     ControllPanelComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    NotificationModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -58,7 +60,8 @@ import {ConfirmationModalComponent} from './components/templates/confirmation-mo
     DataService
   ],
   entryComponents: [
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    NotificationModalComponent
   ],
   bootstrap: [AppComponent]
 })

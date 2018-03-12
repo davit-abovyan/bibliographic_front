@@ -55,6 +55,10 @@ export class ApiService {
     return this.addObject(json, this.boh);
   }
 
+  editBoh(json: JSON): Observable<HttpEvent<Object>> {
+    return this.editObject(json, this.boh);
+  }
+
   removeBoh(id: string): Observable<HttpEvent<Object>> {
     this.some = this.removeObject(id, this.boh);
     console.log(this.some);
@@ -71,6 +75,10 @@ export class ApiService {
 
   private addObject(json: JSON, url: string): Observable<HttpEvent<Object>> {
     return this.http.post<any>(this.host + url + '/', json , httpOptions);
+  }
+
+  private editObject(json: JSON, url: string): Observable<HttpEvent<Object>> {
+    return this.http.put<any>(this.host + url + '/', json , httpOptions);
   }
 
   selectableOperator(array: string[]): Array<any> {

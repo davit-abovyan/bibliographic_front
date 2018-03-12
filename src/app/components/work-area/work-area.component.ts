@@ -26,7 +26,6 @@ export class WorkAreaComponent implements OnInit {
   @Input() page: string[];
   constructor(public dataService: DataService) {
     this.data = this.dataService.menuItems;
-    console.log(this.data);
   }
 
   ngOnInit() {

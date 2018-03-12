@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../../services/api.service';
-import {DomSanitizer} from '@angular/platform-browser';
+import * as _ from 'lodash';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {ConfirmationModalComponent} from '../../templates/confirmation-modal/confirmation-modal.component';
 import {BsModalService} from 'ngx-bootstrap';
+import {Boh} from '../../../entity/boh';
+import {NotificationModalComponent} from '../../templates/notification-modal/notification-modal.component';
 
 @Component({
   selector: 'app-boh',
@@ -13,11 +15,10 @@ import {BsModalService} from 'ngx-bootstrap';
 export class BohComponent implements OnInit {
   public items: Array<any> = [];
   public isLoaded = false;
+  public editRowId = -1;
 
   public newBoh: string;
-
-  // @ViewChild(ConfirmationModalComponent)
-  // private confirmationModal: ConfirmationModalComponent;
+  public editedBoh: string;
 
   constructor(private apiService: ApiService, private modalService: BsModalService) {
   }
@@ -34,24 +35,61 @@ export class BohComponent implements OnInit {
   }
 
   addBoh(): void {
-    this.apiService.addBoh(JSON.parse('{"name": "' + this.newBoh + '"}')).subscribe(objects => {
-      this.newBoh = '';
-      this.getBoh();
-    });
+    const body = '{"name": "' + this.newBoh + '"}';
+    this.apiService.addBoh(JSON.parse(body))
+      .subscribe(() => {
+        this.newBoh = '';
+        this.getBoh();
+      });
+  }
+
+  copyBoh(id: number): void {
+    const object: Boh[] = _.filter(this.items, {'id': id});
+    const body = '{"name": "' + object[0].name + ' (copy)"}';
+    this.apiService.addBoh(JSON.parse(body))
+      .subscribe(() => {
+        this.getBoh();
+        }, (err: HttpErrorResponse) => {
+          if (err.status === 409) {
+           this.showNotification(err.status, err.error);
+         }
+         console.log(err.status + ' ' + err.error);
+        }
+      );
+  }
+
+  editBoh(id: number): void {
+    this.editRowId = id;
   }
 
   removeBoh(id: string): void {
     this.showConfirmationModal(id);
   }
 
-  remove(id: string): void {
-    this.apiService.removeBoh(id).subscribe(
-      () => {
+  edit(id: number): void {
+    const body = '{"id":"' + id + '", "name": "' + this.editedBoh + '"}';
+    this.apiService.editBoh(JSON.parse(body))
+      .subscribe(() => {
+        this.editedBoh = '';
+        this.editRowId = -1;
         this.getBoh();
-        },
-      (err: HttpErrorResponse) => {
-        console.log(err.status + ' ' + err.error);
+      });
+  }
+
+  remove(id: string): void {
+    this.apiService.removeBoh(id)
+      .subscribe(() => {
+        this.getBoh();
       }
+    );
+  }
+
+
+  public showNotification(code: number, error: string) {
+    const modal = this.modalService.show(NotificationModalComponent);
+    (<NotificationModalComponent>modal.content).showNotificationModal(
+      'Սխալի մասին հաղորդագրություն',
+      error
     );
   }
 
