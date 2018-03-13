@@ -55,13 +55,25 @@ export class ApiService {
     return this.addObject(json, this.boh);
   }
 
+  addOperator(json: JSON): Observable<HttpEvent<Object>> {
+    return this.addObject(json, this.operator);
+  }
+
   editBoh(json: JSON): Observable<HttpEvent<Object>> {
     return this.editObject(json, this.boh);
   }
 
+  editOperator(json: JSON): Observable<HttpEvent<Object>> {
+    return this.editObject(json, this.operator);
+  }
+
   removeBoh(id: string): Observable<HttpEvent<Object>> {
     this.some = this.removeObject(id, this.boh);
-    console.log(this.some);
+    return this.some;
+  }
+
+  removeOperatorAPI(id: string): Observable<HttpEvent<Object>> {
+    this.some = this.removeObject(id, this.operator);
     return this.some;
   }
 

@@ -7,7 +7,7 @@ export class DataService {
     {
       'menu': 'info',
       'rows': [
-        {'key': 'operator', 'arm': 'Օպերատոր', 'size': 'S', 'icon': 'user'},
+        {'key': 'operator', 'arm': 'Օպերատոր', 'size': 'M', 'icon': 'user'},
         {'key': 'person', 'arm': 'Անձ', 'size': 'XS', 'icon': 'id-card'},
         {'key': 'science-field', 'arm': 'Գիտության ոլորտ', 'size': 'M'},
         {'key': 'boh', 'arm': 'ԲՈՀ', 'size': 'M'},

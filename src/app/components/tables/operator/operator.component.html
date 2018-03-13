@@ -1,3 +1,42 @@
-<p>
-  operator works!
-</p>
+<div class="container">
+  <div *ngIf='!isLoaded' style="margin: 20px auto;width: 50px;">
+    <i  class="fas fa-sync fa-spin"></i>
+  </div>
+  <table *ngIf='isLoaded' class="table table-hover">
+    <thead>
+    <tr>
+      <th class="table-id">Հ/Հ</th>
+      <th>Անվանումը</th>
+      <th>Ադմին</th>
+      <th class="table-toolbar"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of items">
+      <td>{{row.id}}</td>
+      <td>
+        {{ editRowId != row.id ? row.name : ''}}
+        <input *ngIf="editRowId == row.id" (blur)="edit(row.id)" [(ngModel)]="editedOperator" class="form-control" placeholder="{{row.name}}" />
+      </td>
+      <td>
+        <input class="form-check-input" type="checkbox" [checked]="row.reviewer" />
+      </td>
+      <td class="toolbar">
+        <span style="cursor: pointer" (click)="removeObject(row.id)"><i class="far fa-trash-alt fa-fw"></i></span>
+        <span style="cursor: pointer" (click)="copyObject(row.id)"><i class="far fa-copy fa-fw"></i></span>
+        <span style="cursor: pointer" (click)="editObject(row.id)"><i class="far fa-edit fa-fw"></i></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="form-group row">
+    <div class="col-md-10">
+      <input [(ngModel)]="newOperator" class="form-control" placeholder="Նոր Օպերատոր" />
+    </div>
+    <div class="col-md-2">
+      <button (click)="addObject()" class="btn btn-success"><i class="far fa-save fa-lg"></i></button>
+    </div>
+  </div>
+</div>
+
+
