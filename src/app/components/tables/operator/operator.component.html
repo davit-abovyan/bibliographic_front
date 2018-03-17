@@ -16,10 +16,16 @@
       <td>{{row.id}}</td>
       <td>
         {{ editRowId != row.id ? row.name : ''}}
-        <input *ngIf="editRowId == row.id" (blur)="edit(row.id)" [(ngModel)]="editedOperator" class="form-control" placeholder="{{row.name}}" />
+        <input *ngIf="editRowId == row.id" (blur)="editName(row.id)" [(ngModel)]="editedOperator"
+               class="form-control" placeholder="{{row.name}}" />
       </td>
       <td>
-        <input class="form-check-input" type="checkbox" [checked]="row.reviewer" />
+        <input *ngIf="editRowId != row.id" class="form-check-input" type="checkbox" disabled="true" (click)="editIsAdmin(row.id)" (ngModel)="isAdmin" [checked]="row.reviewer" />
+        <select *ngIf="editRowId == row.id" class="form-control" [(ngModel)]="isAdmin">
+          <option value="true">Այո</option>
+          <option value="false">Ոչ</option>
+        </select>
+
       </td>
       <td class="toolbar">
         <span style="cursor: pointer" (click)="removeObject(row.id)"><i class="far fa-trash-alt fa-fw"></i></span>

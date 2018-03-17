@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as _ from 'lodash';
 import {Operator} from '../entity/operator';
 import {HttpEvent} from '@angular/common/http/src/response';
+import {Person} from '../entity/person';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
@@ -59,12 +60,20 @@ export class ApiService {
     return this.addObject(json, this.operator);
   }
 
+  addPerson(json: JSON): Observable<HttpEvent<Object>> {
+    return this.addObject(json, this.person);
+  }
+
   editBoh(json: JSON): Observable<HttpEvent<Object>> {
     return this.editObject(json, this.boh);
   }
 
   editOperator(json: JSON): Observable<HttpEvent<Object>> {
     return this.editObject(json, this.operator);
+  }
+
+  editPerson(json: JSON): Observable<HttpEvent<Object>> {
+    return this.editObject(json, this.person);
   }
 
   removeBoh(id: string): Observable<HttpEvent<Object>> {
@@ -74,6 +83,11 @@ export class ApiService {
 
   removeOperatorAPI(id: string): Observable<HttpEvent<Object>> {
     this.some = this.removeObject(id, this.operator);
+    return this.some;
+  }
+
+  removePerson(id: string): Observable<HttpEvent<Object>> {
+    this.some = this.removeObject(id, this.person);
     return this.some;
   }
 
@@ -96,6 +110,18 @@ export class ApiService {
   selectableOperator(array: string[]): Array<any> {
     return _.map(array, (element: Operator) => new Operator(element.id, element.name, element.reviewer));
   }
-
+  selectablePerson(array: string[]): Array<any> {
+    return _.map(array, (element: Person) =>
+      new Person({
+          id: element.id,
+          nameInitialArm: element.nameInitialArm,
+          nameInitialRus: element.nameInitialRus,
+          nameInitialEng: element.nameInitialEng,
+          nameFinalArm: element.nameFinalArm,
+          nameFinalRus: element.nameFinalRus,
+          nameFinalEng: element.nameFinalEng,
+          inReviewState: element.inReviewState
+        }));
+  }
 
 }

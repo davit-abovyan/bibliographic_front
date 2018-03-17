@@ -19,6 +19,7 @@ export class OperatorComponent implements OnInit {
 
   public newOperator: string;
   public editedOperator: string;
+  public isAdmin: boolean;
 
   constructor(private apiService: ApiService, private modalService: BsModalService) {
   }
@@ -65,11 +66,11 @@ export class OperatorComponent implements OnInit {
     this.showConfirmationModal(id);
   }
 
-  edit(id: number): void {
+  editName(id: number): void {
     if (this.editedOperator === undefined) {
       this.editRowId = -1;
     } else {
-      const body = '{"id":"' + id + '", "name": "' + this.editedOperator + '"}';
+      const body = '{"id":"' + id + '", "name": "' + this.editedOperator + '", "reviewer": ' + this.isAdmin + '}';
       this.apiService.editOperator(JSON.parse(body))
         .subscribe(() => {
           this.editedOperator = '';
@@ -77,6 +78,14 @@ export class OperatorComponent implements OnInit {
           this.getObject();
         });
     }
+  }
+
+  editIsAdmin(id: number): void {
+      const body = '{"id":"' + id + '", "reviewer": ' + this.isAdmin + '}';
+      this.apiService.editOperator(JSON.parse(body))
+        .subscribe(() => {
+
+        });
   }
 
 

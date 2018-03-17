@@ -1,3 +1,128 @@
-<p>
-  person works!
-</p>
+<div>
+  <tabset>
+    <tab heading="Ցուցակ" id="tab1">
+
+      <div class="container">
+        <div *ngIf='!isLoaded' style="margin: 20px auto;width: 50px;">
+          <i class="fas fa-sync fa-spin"></i>
+        </div>
+        <table *ngIf='isLoaded' class="table table-hover">
+          <thead>
+          <tr>
+            <th class="table-id">Հ/Հ</th>
+            <th>Անուն հայերեն</th>
+            <th>Անուն ռուսերեն</th>
+            <th>Անուն անգլերեն</th>
+            <th>Վերանայված հայերեն</th>
+            <th>Վերանայված ռուսերեն</th>
+            <th>Վերանայված անգլերեն</th>
+            <th class="table-toolbar"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of items">
+            <td>{{row.id}}</td>
+            <td>
+              {{ editRowId != row.id ? row.nameInitialArm : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedPerson.nameInitialArm" class="form-control"
+                     placeholder="{{row.nameInitialArm}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameInitialRus : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedPerson.nameInitialRus" class="form-control"
+                     placeholder="{{row.nameInitialRus}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameInitialEng : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedPerson.nameInitialEng" class="form-control"
+                     placeholder="{{row.nameInitialEng}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameFinalArm : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedPerson.nameFinalArm" class="form-control"
+                     placeholder="{{row.nameFinalArm}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameFinalRus : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedPerson.nameFinalRus" class="form-control"
+                     placeholder="{{row.nameFinalRus}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameFinalEng : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedPerson.nameFinalEng" class="form-control"
+                     placeholder="{{row.nameFinalEng}}"/>
+            </td>
+            <td class="toolbar">
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removePerson(row.id)"><i
+                class="far fa-trash-alt fa-fw"></i></span>
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="copyPerson(row.id)"><i
+                class="far fa-copy fa-fw"></i></span>
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="editPerson(row.id)"><i
+                class="far fa-edit fa-fw"></i></span>
+              <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="edit(row.id)"><i
+                class="far fa-save fa-fw"></i></span>
+              <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="cancleEdit()"><i
+                class="fas fa-undo-alt fa-fw"></i></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </tab>
+    <tab heading="Նոր անձ">
+      <div class="form-group row">
+        <label for="name-initial-arm" class="col-3 col-form-label">Նախնական անունը</label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="newPerson.nameInitialArm"
+                 placeholder="մուտքագրեք հայերեն տարբերակը" id="name-initial-arm">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="name-initial-rus" class="col-3 col-form-label"></label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="newPerson.nameInitialRus"
+                 placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-initial-rus">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="name-initial-eng" class="col-3 col-form-label"></label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="newPerson.nameInitialEng"
+                 placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-initial-eng">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="name-final-arm" class="col-3 col-form-label">Ճշտված անունը</label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="newPerson.nameFinalArm"
+                 placeholder="մուտքագրեք հայերեն տարբերակը" id="name-final-arm">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="name-final-rus" class="col-3 col-form-label"></label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="newPerson.nameFinalRus"
+                 placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-final-rus">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="name-final-eng" class="col-3 col-form-label"></label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="newPerson.nameFinalEng"
+                 placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-final-eng">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-9">
+
+        </div>
+        <div class="col-md-3">
+          <button (click)="addPerson()" class="btn btn-success"><i class="far fa-save fa-lg"></i> Հիշել</button>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
