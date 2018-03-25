@@ -9,7 +9,7 @@
         <table *ngIf='isLoaded' class="table table-hover">
           <thead>
           <tr>
-            <th class="table-id">Հ/Հ</th>
+            <th class="table-id">No</th>
             <th>Անուն հայերեն</th>
             <th>Անուն ռուսերեն</th>
             <th>Անուն անգլերեն</th>
@@ -53,7 +53,7 @@
                      placeholder="{{row.nameFinalEng}}"/>
             </td>
             <td class="toolbar">
-              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removePerson(row.id)"><i
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removePerson(row.id, row.text)"><i
                 class="far fa-trash-alt fa-fw"></i></span>
               <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="copyPerson(row.id)"><i
                 class="far fa-copy fa-fw"></i></span>
@@ -71,50 +71,54 @@
 
     </tab>
     <tab heading="Նոր անձ">
-      <div class="form-group row">
-        <label for="name-initial-arm" class="col-3 col-form-label">Նախնական անունը</label>
-        <div class="col-9">
-          <input class="form-control" [(ngModel)]="newPerson.nameInitialArm"
-                 placeholder="մուտքագրեք հայերեն տարբերակը" id="name-initial-arm">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Նախնական անունը:</legend>
+        <div class="form-group row">
+          <label for="name-initial-arm" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newPerson.nameInitialArm"
+                   placeholder="մուտքագրեք հայերեն տարբերակը" id="name-initial-arm">
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="name-initial-rus" class="col-3 col-form-label"></label>
-        <div class="col-9">
-          <input class="form-control" [(ngModel)]="newPerson.nameInitialRus"
-                 placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-initial-rus">
+        <div class="form-group row">
+          <label for="name-initial-rus" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newPerson.nameInitialRus"
+                   placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-initial-rus">
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="name-initial-eng" class="col-3 col-form-label"></label>
-        <div class="col-9">
-          <input class="form-control" [(ngModel)]="newPerson.nameInitialEng"
-                 placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-initial-eng">
+        <div class="form-group row">
+          <label for="name-initial-eng" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newPerson.nameInitialEng"
+                   placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-initial-eng">
+          </div>
         </div>
-      </div>
-
+      </fieldset>
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Ճշտված անունը:</legend>
       <div class="form-group row">
-        <label for="name-final-arm" class="col-3 col-form-label">Ճշտված անունը</label>
-        <div class="col-9">
+        <label for="name-final-arm" class="col-1 col-form-label"></label>
+        <div class="col-11">
           <input class="form-control" [(ngModel)]="newPerson.nameFinalArm"
                  placeholder="մուտքագրեք հայերեն տարբերակը" id="name-final-arm">
         </div>
       </div>
       <div class="form-group row">
-        <label for="name-final-rus" class="col-3 col-form-label"></label>
-        <div class="col-9">
+        <label for="name-final-rus" class="col-1 col-form-label"></label>
+        <div class="col-11">
           <input class="form-control" [(ngModel)]="newPerson.nameFinalRus"
                  placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-final-rus">
         </div>
       </div>
       <div class="form-group row">
-        <label for="name-final-eng" class="col-3 col-form-label"></label>
-        <div class="col-9">
+        <label for="name-final-eng" class="col-1 col-form-label"></label>
+        <div class="col-11">
           <input class="form-control" [(ngModel)]="newPerson.nameFinalEng"
                  placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-final-eng">
         </div>
       </div>
-
+      </fieldset>
       <div class="form-group row">
         <div class="col-md-9">
 

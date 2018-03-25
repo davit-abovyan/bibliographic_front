@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import * as _ from 'lodash';
 import {DataService} from '../../services/data.service';
+import {ConfigService} from '../../services/config.service';
 
 @Component({
   selector: 'app-work-area',
@@ -24,8 +25,8 @@ export class WorkAreaComponent implements OnInit {
   data: object[];
 
   @Input() page: string[];
-  constructor(public dataService: DataService) {
-    this.data = this.dataService.menuItems;
+  constructor(public configService: ConfigService) {
+    this.data = this.configService.menuItems;
   }
 
   ngOnInit() {

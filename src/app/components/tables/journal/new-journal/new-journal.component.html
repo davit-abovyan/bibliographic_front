@@ -1,0 +1,276 @@
+<div class="window-content">
+  <tabset>
+    <tab heading="Հիմնական" id="main">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Ընդհանուր տվյալներ:</legend>
+        <div class="form-group row">
+          <label for="main_code" class="col-1 col-form-label">Կոդ։ </label>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="newJournal.code"
+                   placeholder="ARM-999 ֆորմատով" id="main_code">
+          </div>
+          <label for="main_ISBN" class="col-1 col-form-label">ISBN։</label>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="newJournal.ISBN"
+                   placeholder="9999-9999 ֆորմատով" id="main_ISBN">
+          </div>
+          <label for="main_ISSN" class="col-1 col-form-label">ISSN։</label>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="newJournal.ISSNPrint"
+                   placeholder="9999-9999 ֆորմատով" id="main_ISSN">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="main_frequency" class="col-6 col-form-label">Տարեկան տպագրման հաճախականությունը։ </label>
+          <div class="col-3">
+            <select class="form-control" (ngModel)="newJournal.frequency" id="main_frequency" >
+              <option value="1">Օրեկան</option>
+              <option value="2">Շաբաթական</option>
+              <option value="3">Ամսեկան</option>
+              <option value="4">Եռամսյակային</option>
+              <option value="5">Տարեկան</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="main_language" class="col-1 col-form-label">Լեզում։ </label>
+          <div class="col-2">
+            <select class="form-control" (ngModel)="newJournal.language" id="main_language" >
+              <option value="1">Հայերեն</option>
+              <option value="2">Ռուսերեն</option>
+              <option value="3">Անգլերեն</option>
+            </select>
+          </div>
+          <label for="main_journalCategory" class="col-1 col-form-label">Կատեգորիա։ </label>
+          <div class="col-1">
+            <input class="form-control" [(ngModel)]="newJournal.journalCategory"
+                   placeholder="" id="main_journalCategory">
+          </div>
+          <label for="main_scienceFieldId" class="col-3 col-form-label">Գիտության ոլորտ։ </label>
+          <div class="col-4">
+            <app-typeahead id="main_scienceFieldId" objectBase="'sciencefield'"
+                           (notify)="setScienceFieldId($event)"></app-typeahead>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Գրանցման ընթացիկ վյճատը:</legend>
+        <div class="form-group row">
+          <label for="main_reviewed" class="col-1 col-form-label">Ստուգված։ </label>
+          <div class="col-2">
+            <select class="form-control" (ngModel)="newJournal.reviewed" id="main_reviewed" >
+              <option value="true">Այո</option>
+              <option value="false">Ոչ</option>
+            </select>
+          </div>
+          <label for="main_inProgress" class="col-1 col-form-label">Ընթացքում։ </label>
+          <div class="col-2">
+            <select class="form-control" (ngModel)="newJournal.inProgress" id="main_inProgress" >
+              <option value="true">Այո</option>
+              <option value="false">Ոչ</option>
+            </select>
+          </div>
+          <label for="main_operatorId" class="col-2 col-form-label">Օպերատոր։ </label>
+          <div class="col-4">
+            <app-typeahead id="main_operatorId" objectBase="'person'"
+                           (notify)="setOperatorId($event)"></app-typeahead>
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group row">
+        <div class="col-md-9">
+
+        </div>
+        <div class="col-md-3">
+          <button (click)="addJournal()" class="btn btn-success">
+            <i class="far fa-save fa-lg"></i> Գրանցել ամսագիրը</button>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Անվանում" id="name">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Կրճատ անվանումը</legend>
+        <div class="form-group row">
+          <label for="name_short_arm" class="col-1 col-form-label">Հայերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameArm"
+                   placeholder="հայերեն կրճատ" id="name_short_arm">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name_short_rus" class="col-1 col-form-label">Ռուսերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameRus"
+                   placeholder="ռուսերեն կրճատ" id="name_short_rus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name_short_eng" class="col-1 col-form-label">Անգլերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameEng"
+                   placeholder="անգլերեն կրճատ" id="name_short_eng">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Լրիվ անվանումը</legend>
+        <div class="form-group row">
+          <label for="name_full_arm" class="col-1 col-form-label">Հայերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.fullNameArm"
+                   placeholder="հայերեն լրիվ" id="name_full_arm">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name_full_rus" class="col-1 col-form-label">Ռուսերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.fullNameRus"
+                   placeholder="ռուսերեն լրիվ" id="name_full_rus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name_full_eng" class="col-1 col-form-label">Անգլերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.fullNameEng"
+                   placeholder="անգլերեն լրիվ" id="name_full_eng">
+          </div>
+        </div>
+      </fieldset>
+    </tab>
+    <tab heading="Տպագրող" id="publisher">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Տպագրողի անվանումը</legend>
+        <div class="form-group row">
+          <label for="publisher_name_arm" class="col-1 col-form-label">Հայերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.publisherArm"
+                   placeholder="հայերեն կրճատ" id="publisher_name_arm">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="publisher_name_rus" class="col-1 col-form-label">Ռուսերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.publisherRus"
+                   placeholder="ռուսերեն կրճատ" id="publisher_name_rus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="publisher_name_eng" class="col-1 col-form-label">Անգլերեն։ </label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.publisherEng"
+                   placeholder="անգլերեն կրճատ" id="publisher_name_eng">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Կոնտակտային տվյալներ</legend>
+        <div class="form-group row">
+          <label for="publisher_phone" class="col-2 col-form-label">Հեռախոս։ </label>
+          <div class="col-4">
+            <input class="form-control" [(ngModel)]="newJournal.phone"
+                   placeholder="+999 (00) 999999 ֆորմատով" id="publisher_phone">
+          </div>
+          <label for="publisher_fax" class="col-1 col-form-label">Ֆաքս։ </label>
+          <div class="col-5">
+            <input class="form-control" [(ngModel)]="newJournal.fax"
+                   placeholder="+999 (00) 999999 ֆորմատով" id="publisher_fax">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="publisher_email" class="col-2 col-form-label">Էլ․հասցե։ </label>
+          <div class="col-4">
+            <input class="form-control" [(ngModel)]="newJournal.email"
+                   placeholder="էլ․ հասցե" id="publisher_email">
+          </div>
+          <label for="publisher_website" class="col-1 col-form-label">Կայք։ </label>
+          <div class="col-5">
+            <input class="form-control" [(ngModel)]="newJournal.website"
+                   placeholder="www.example.am ֆորմատով" id="publisher_website">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="publisher_country" class="col-1 col-form-label">Երկիր։ </label>
+          <div class="col-2">
+            <input class="form-control" [(ngModel)]="newJournal.country"
+                   placeholder="" id="publisher_country">
+          </div>
+          <label for="publisher_city" class="col-1 col-form-label">Քաղաք։ </label>
+          <div class="col-2">
+            <input class="form-control" [(ngModel)]="newJournal.city"
+                   placeholder="քաղաքի անվանումը" id="publisher_city">
+          </div>
+          <label for="publisher_address" class="col-1 col-form-label">Հասցե։ </label>
+          <div class="col-5">
+            <input class="form-control" [(ngModel)]="newJournal.address"
+                   placeholder="հասցեն" id="publisher_address">
+          </div>
+        </div>
+      </fieldset>
+    </tab>
+    <tab heading="Նկարագիր" id="description">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Համառոտ նկարագրություն</legend>
+        <div class="form-group row">
+          <label for="description_arm" class="col-1 col-form-label">Հայերեն։ </label>
+          <div class="col-11">
+            <textarea class="form-control" [(ngModel)]="newJournal.descriptionArm" rows="5"
+                   placeholder="հայերեն համառոտ նկարագրություն" id="description_arm"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description_rus" class="col-1 col-form-label">Ռուսերեն։ </label>
+          <div class="col-11">
+              <textarea class="form-control" [(ngModel)]="newJournal.descriptionRus" rows="5"
+                   placeholder="ռուսերեն համառոտ նկարագրություն" id="description_rus"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description_eng" class="col-1 col-form-label">Անգլերեն։ </label>
+          <div class="col-11">
+            <textarea class="form-control" [(ngModel)]="newJournal.descriptionEng" rows="5"
+                   placeholder="անգլերեն համառոտ նկարագրություն" id="description_eng"></textarea>
+          </div>
+        </div>
+      </fieldset>
+    </tab>
+    <tab heading="Նկար" id="cover">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Ամսագրի արտաքին տեսքը</legend>
+
+      </fieldset>
+    </tab>
+    <tab heading="Ընդհանուր" id="general">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Այլ տվյլաներ</legend>
+        <div class="form-group row">
+          <label for="general_founder" class="col-3 col-form-label">Ամսագրի հիմնադիր։ </label>
+          <div class="col-9">
+            <input class="form-control" [(ngModel)]="newJournal.founderArm"
+                   placeholder="հիմանդրի տվյալները" id="general_founder">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="general_startYear" class="col-3 col-form-label">Հիմնադրման տարին։ </label>
+          <div class="col-2">
+            <input class="form-control" [(ngModel)]="newJournal.startYear"
+                   placeholder="XXXX ֆորմատով" id="general_startYear">
+          </div>
+          <label for="general_indexedLibraries" class="col-2 col-form-label">eLibrary ինդեքս։ </label>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="newJournal.indexedLibraries"
+                   placeholder="XXXXXX ֆորմատով" id="general_indexedLibraries">
+          </div>
+          <label for="general_type" class="col-1 col-form-label">Տիպ։ </label>
+          <div class="col-1">
+            <select class="form-control" (ngModel)="newJournal.type" id="general_type" >
+              <option value="true">Այո</option>
+              <option value="false">Ոչ</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </tab>
+  </tabset>
+</div>
+
+

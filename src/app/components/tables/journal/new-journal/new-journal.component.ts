@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from '../../../services/api.service';
-import {NotificationModalComponent} from '../../templates/notification-modal/notification-modal.component';
+import {ApiService} from '../../../../services/api.service';
+import {NotificationModalComponent} from '../../../templates/notification-modal/notification-modal.component';
 import {HttpErrorResponse} from '@angular/common/http';
-import {ConfirmationModalComponent} from '../../templates/confirmation-modal/confirmation-modal.component';
+import {ConfirmationModalComponent} from '../../../templates/confirmation-modal/confirmation-modal.component';
 import {BsModalService} from 'ngx-bootstrap';
 import * as _ from 'lodash';
-import {Journal} from '../../../entity/journal';
+import {Journal} from '../../../../entity/journal';
 
 @Component({
-  selector: 'app-journal',
-  templateUrl: './journal.component.html',
-  styleUrls: ['./journal.component.css']
+  selector: 'app-new-journal',
+  templateUrl: './new-journal.component.html',
+  styleUrls: ['./new-journal.component.css']
 })
-export class JournalComponent implements OnInit {
+export class NewJournalComponent implements OnInit {
 
   public items: Array<Journal> = [];
   public isLoaded = false;
@@ -28,11 +28,16 @@ export class JournalComponent implements OnInit {
     this.getJournal();
   }
 
+  setScienceFieldId(id: number): void {
+    this.newJournal.scienceFieldId = id;
+  }
+  setOperatorId(id: number): void {
+    this.newJournal.operatorId = id;
+  }
+
   getJournal(): void {
     this.apiService.getJournal().subscribe(objects => {
-      console.log(objects);
       this.items = this.apiService.selectableJournal(objects);
-      console.log(this.items);
       this.isLoaded = true;
     });
   }
@@ -123,7 +128,6 @@ export class JournalComponent implements OnInit {
       \"type\": "${object[0].type}",
       \"indexedLibraries\": "${object[0].indexedLibraries}"
       }`;
-    console.log(body);
     this.apiService.addJournal(JSON.parse(body))
       .subscribe(() => {
           this.getJournal();

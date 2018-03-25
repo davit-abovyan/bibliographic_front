@@ -62,8 +62,8 @@ export class OperatorComponent implements OnInit {
     this.editRowId = id;
   }
 
-  removeObject(id: string): void {
-    this.showConfirmationModal(id);
+  removeObject(text: string): void {
+    this.showConfirmationModal(text);
   }
 
   editName(id: number): void {
@@ -110,7 +110,7 @@ export class OperatorComponent implements OnInit {
     const modal = this.modalService.show(ConfirmationModalComponent);
     (<ConfirmationModalComponent>modal.content).showConfirmationModal(
       'Հեռացնել գրառումը',
-      'Դուք իրոք ցանկանում եք հեռացնել ' + id + ' համարի գրառումը'
+      'Ցանկանում եք հեռացնել ' + id + ' գրառումը?'
     );
 
     (<ConfirmationModalComponent>modal.content).onClose.subscribe(result => {

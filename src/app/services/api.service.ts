@@ -2,9 +2,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as _ from 'lodash';
-import {Operator} from '../entity/operator';
 import {HttpEvent} from '@angular/common/http/src/response';
+
+import {Operator} from '../entity/operator';
 import {Person} from '../entity/person';
+import {ScienceField} from '../entity/scienceField';
+import {Journal} from '../entity/journal';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
@@ -16,12 +19,12 @@ export class ApiService {
   private host = 'http://63.142.252.60:8080/api/v1.0/';
   private search = '/search/';
 
-  private boh = 'boh';
-  private operator = 'operator';
-  private person = 'person';
-  private scienceField = 'sciencefield';
-  private journal = 'journal';
-  private statistics = 'statistics';
+  public boh = 'boh';
+  public operator = 'operator';
+  public person = 'person';
+  public scienceField = 'sciencefield';
+  public journal = 'journal';
+  public statistics = 'statistics';
 
   private some: any;
 
@@ -64,6 +67,14 @@ export class ApiService {
     return this.addObject(json, this.person);
   }
 
+  addScienceField(json: JSON): Observable<HttpEvent<Object>> {
+    return this.addObject(json, this.scienceField);
+  }
+
+  addJournal(json: JSON): Observable<HttpEvent<Object>> {
+    return this.addObject(json, this.journal);
+  }
+
   editBoh(json: JSON): Observable<HttpEvent<Object>> {
     return this.editObject(json, this.boh);
   }
@@ -74,6 +85,14 @@ export class ApiService {
 
   editPerson(json: JSON): Observable<HttpEvent<Object>> {
     return this.editObject(json, this.person);
+  }
+
+  editScienceField(json: JSON): Observable<HttpEvent<Object>> {
+    return this.editObject(json, this.scienceField);
+  }
+
+  editJournal(json: JSON): Observable<HttpEvent<Object>> {
+    return this.editObject(json, this.journal);
   }
 
   removeBoh(id: string): Observable<HttpEvent<Object>> {
@@ -88,6 +107,16 @@ export class ApiService {
 
   removePerson(id: string): Observable<HttpEvent<Object>> {
     this.some = this.removeObject(id, this.person);
+    return this.some;
+  }
+
+  removeScienceField(id: string): Observable<HttpEvent<Object>> {
+    this.some = this.removeObject(id, this.scienceField);
+    return this.some;
+  }
+
+  removeJournal(id: string): Observable<HttpEvent<Object>> {
+    this.some = this.removeObject(id, this.journal);
     return this.some;
   }
 
@@ -123,5 +152,54 @@ export class ApiService {
           inReviewState: element.inReviewState
         }));
   }
-
+  selectableScienceField(array: string[]): Array<any> {
+    return _.map(array, (element: ScienceField) =>
+      new ScienceField({
+        id: element.id,
+        nameArm: element.nameArm,
+        nameRus: element.nameRus,
+        nameEng: element.nameEng
+      }));
+  }
+  selectableJournal(array: string[]): Array<any> {
+    return _.map(array, (element: Journal) =>
+      new Journal({
+        id: element.id,
+        code: element.code,
+        operatorId: element.operatorId,
+        nameArm: element.nameArm,
+        nameRus: element.nameRus,
+        nameEng: element.nameEng,
+        fullNameArm: element.fullNameArm,
+        fullNameRus: element.fullNameRus,
+        fullNameEng: element.fullNameEng,
+        ISSNPrint: element.ISSNPrint,
+        ISBN: element.ISBN,
+        founderArm: element.founderArm,
+        publisherArm: element.publisherArm,
+        publisherRus: element.publisherRus,
+        publisherEng: element.publisherEng,
+        phone: element.phone,
+        fax: element.fax,
+        email: element.email,
+        website: element.website,
+        country: element.country,
+        city: element.city,
+        address: element.address,
+        frequency: element.frequency,
+        language: element.language,
+        journalCategory: element.journalCategory,
+        reviewed: element.reviewed,
+        inProgress: element.inProgress,
+        startYear: element.startYear,
+        editor: element.editor,
+        descriptionArm: element.descriptionArm,
+        descriptionRus: element.descriptionRus,
+        descriptionEng: element.descriptionEng,
+        scienceFieldId: element.scienceFieldId,
+        cover: element.cover,
+        type: element.type,
+        indexedLibraries: element.indexedLibraries
+      }));
+  }
 }

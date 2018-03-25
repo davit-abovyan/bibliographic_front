@@ -91,8 +91,8 @@ export class PersonComponent implements OnInit {
       });
   }
 
-  removePerson(id: string): void {
-    this.showConfirmationModal(id);
+  removePerson(id: string, text: string): void {
+    this.showConfirmationModal(id, text);
   }
 
   edit(id: number): void {
@@ -138,11 +138,11 @@ export class PersonComponent implements OnInit {
     );
   }
 
-  public showConfirmationModal(id: string): void {
+  public showConfirmationModal(id: string, text: string): void {
     const modal = this.modalService.show(ConfirmationModalComponent);
     (<ConfirmationModalComponent>modal.content).showConfirmationModal(
       'Հեռացնել գրառումը',
-      'Դուք իրոք ցանկանում եք հեռացնել ' + id + ' համարի գրառումը'
+      'Ցանկանում եք հեռացնել <span class="attention-text">' + text + '</span> գրառումը?'
     );
 
     (<ConfirmationModalComponent>modal.content).onClose.subscribe(result => {

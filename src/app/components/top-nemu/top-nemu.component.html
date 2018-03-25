@@ -1,10 +1,10 @@
 <div class="top-menu">
   <div class="btn-group">
-    <div *ngFor="let menu of data" class="btn-group" ngbDropdown role="group"
+    <div *ngFor="let menuItem of menu" class="btn-group" ngbDropdown role="group"
          aria-label="Button group with nested dropdown">
-      <button class="btn btn-primary" ngbDropdownToggle>{{menu.arm}}</button>
+      <button class="btn btn-primary" ngbDropdownToggle>{{menuItem.arm}}</button>
       <div class="dropdown-menu" ngbDropdownMenu>
-        <button *ngFor="let entry of menu.rows" class="dropdown-item" (click)="openTable(entry.key)">
+        <button *ngFor="let entry of menuItem.rows" class="dropdown-item" (click)="openTable(entry.key)">
           <i class='far fa-{{entry.icon==undefined ? "empty" : entry.icon}} fa-lg'></i> {{entry.arm}}
         </button>
       </div>

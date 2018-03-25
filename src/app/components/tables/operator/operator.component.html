@@ -5,7 +5,7 @@
   <table *ngIf='isLoaded' class="table table-hover">
     <thead>
     <tr>
-      <th class="table-id">Հ/Հ</th>
+      <th class="table-id">No</th>
       <th>Անվանումը</th>
       <th>Ադմին</th>
       <th class="table-toolbar"></th>
@@ -21,14 +21,14 @@
       </td>
       <td>
         <input *ngIf="editRowId != row.id" class="form-check-input" type="checkbox" disabled="true" (click)="editIsAdmin(row.id)" (ngModel)="isAdmin" [checked]="row.reviewer" />
-        <select *ngIf="editRowId == row.id" class="form-control" [(ngModel)]="isAdmin">
-          <option value="true">Այո</option>
-          <option value="false">Ոչ</option>
+        <select *ngIf="editRowId == row.id" class="form-control" (ngModel)="isAdmin" >
+          <option value="true" [selected]="row.reviewer">Այո</option>
+          <option value="false" [selected]="!row.reviewer" >Ոչ</option>
         </select>
 
       </td>
       <td class="toolbar">
-        <span style="cursor: pointer" (click)="removeObject(row.id)"><i class="far fa-trash-alt fa-fw"></i></span>
+        <span style="cursor: pointer" (click)="removeObject(row.text)"><i class="far fa-trash-alt fa-fw"></i></span>
         <span style="cursor: pointer" (click)="copyObject(row.id)"><i class="far fa-copy fa-fw"></i></span>
         <span style="cursor: pointer" (click)="editObject(row.id)"><i class="far fa-edit fa-fw"></i></span>
       </td>

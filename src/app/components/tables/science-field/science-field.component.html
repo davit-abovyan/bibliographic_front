@@ -1,3 +1,90 @@
-<p>
-  science-field works!
-</p>
+<div>
+  <tabset>
+    <tab heading="Ցուցակ" id="tab1">
+
+      <div class="container">
+        <div *ngIf='!isLoaded' style="margin: 20px auto;width: 50px;">
+          <i class="fas fa-sync fa-spin"></i>
+        </div>
+        <table *ngIf='isLoaded' class="table table-hover">
+          <thead>
+          <tr>
+            <th class="table-id">No</th>
+            <th>Անուն հայերեն</th>
+            <th>Անուն ռուսերեն</th>
+            <th>Անուն անգլերեն</th>
+            <th class="table-toolbar"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of items">
+            <td>{{row.id}}</td>
+            <td>
+              {{ editRowId != row.id ? row.nameArm : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedScienceField.nameArm" class="form-control"
+                     placeholder="{{row.nameArm}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameRus : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedScienceField.nameRus" class="form-control"
+                     placeholder="{{row.nameRus}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.nameEng : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedScienceField.nameEng" class="form-control"
+                     placeholder="{{row.nameEng}}"/>
+            </td>
+            <td class="toolbar">
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removeScienceField(row.id, row.text)"><i
+                class="far fa-trash-alt fa-fw"></i></span>
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="copyScienceField(row.id)"><i
+                class="far fa-copy fa-fw"></i></span>
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="editScienceField(row.id)"><i
+                class="far fa-edit fa-fw"></i></span>
+              <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="edit(row.id)"><i
+                class="far fa-save fa-fw"></i></span>
+              <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="cancleEdit()"><i
+                class="fas fa-undo-alt fa-fw"></i></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </tab>
+    <tab heading="Նոր ոլորտ">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Ոլորտի անունը:</legend>
+        <div class="form-group row">
+          <label for="name-arm" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newScienceField.nameArm"
+                   placeholder="մուտքագրեք հայերեն տարբերակը" id="name-arm">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name-rus" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newScienceField.nameRus"
+                   placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-rus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name-eng" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newScienceField.nameEng"
+                   placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-eng">
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group row">
+        <div class="col-md-9">
+
+        </div>
+        <div class="col-md-3">
+          <button (click)="addScienceField()" class="btn btn-success"><i class="far fa-save fa-lg"></i> Հիշել</button>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>

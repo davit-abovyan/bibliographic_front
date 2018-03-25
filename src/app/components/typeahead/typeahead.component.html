@@ -5,6 +5,7 @@
                 [items]="items" optionValueField="id" optionTextField="text"
                 [disabled]="ngxDisabled"
                 [(ngModel)]="ngxValue"
+                (select)="selectElement()"
                 placeholder="-- ընտրեք --">
 
       <ng-template ngx-select-option ngx-select-option-selected let-option let-rev="isReviewer">
@@ -19,13 +20,5 @@
 
     </ngx-select>
     <p></p>
-    <div class="alert alert-secondary">
-      <pre>{{ngxValue | json}}</pre>
-    </div>
-    <div>
-      <button class="btn btn-primary" (click)="ngxDisabled = !ngxDisabled">
-        {{ngxDisabled ? 'Enable' : 'Disable'}}
-      </button>
-    </div>
   </div>
 </div>

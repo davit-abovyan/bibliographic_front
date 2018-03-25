@@ -24,6 +24,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { ControllPanelComponent } from './components/controll-panel/controll-panel.component';
 import {ConfirmationModalComponent} from './components/templates/confirmation-modal/confirmation-modal.component';
 import { NotificationModalComponent } from './components/templates/notification-modal/notification-modal.component';
+import {ConfigService} from './services/config.service';
+import { NewJournalComponent } from './components/tables/journal/new-journal/new-journal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { NotificationModalComponent } from './components/templates/notification-
     LogoComponent,
     ControllPanelComponent,
     ConfirmationModalComponent,
-    NotificationModalComponent
+    NotificationModalComponent,
+    NewJournalComponent
   ],
   imports: [
     HttpClientModule,
@@ -57,7 +60,8 @@ import { NotificationModalComponent } from './components/templates/notification-
   ],
   providers: [
     ApiService,
-    DataService
+    DataService,
+    ConfigService
   ],
   entryComponents: [
     ConfirmationModalComponent,

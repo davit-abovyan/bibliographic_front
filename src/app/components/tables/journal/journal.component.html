@@ -1,3 +1,126 @@
-<p>
-  journal works!
-</p>
+<div>
+  <tabset>
+    <tab heading="Ցուցակ" id="tab1">
+
+      <div class="container">
+        <div *ngIf='!isLoaded' style="margin: 20px auto;width: 50px;">
+          <i class="fas fa-sync fa-spin"></i>
+        </div>
+        <table *ngIf='isLoaded' class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-s">Կոդ</th>
+            <th class="col-xxl">Անուն հայերեն</th>
+            <th class="col-s">ISSN</th>
+            <th>Տպագրող</th>
+            <th>Պարբերակ․</th>
+            <th>Ոլորտը</th>
+            <th class="table-toolbar"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of items">
+            <td>{{row.code}}</td>
+            <td>
+              {{ editRowId != row.id ? row.nameArm : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedJournal.nameArm" class="form-control"
+                     placeholder="{{row.nameArm}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.ISSNPrint : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedJournal.ISSNPrint" class="form-control"
+                     placeholder="{{row.ISSNPrint}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.publisherArm : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedJournal.publisherArm" class="form-control"
+                     placeholder="{{row.publisherArm}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.frequency : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedJournal.frequency" class="form-control"
+                     placeholder="{{row.frequency}}"/>
+            </td>
+            <td>
+              {{ editRowId != row.id ? row.scienceFieldId : ''}}
+              <input *ngIf="editRowId == row.id" [(ngModel)]="editedJournal.scienceFieldId" class="form-control"
+                     placeholder="{{row.scienceFieldId}}"/>
+            </td>
+            <td class="toolbar">
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removeJournal(row.id, row.text)"><i
+                class="far fa-trash-alt fa-fw"></i></span>
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="copyJournal(row.id)"><i
+                class="far fa-copy fa-fw"></i></span>
+              <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="editJournal(row.id)"><i
+                class="far fa-edit fa-fw"></i></span>
+              <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="edit(row.id)"><i
+                class="far fa-save fa-fw"></i></span>
+              <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="cancleEdit()"><i
+                class="fas fa-undo-alt fa-fw"></i></span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </tab>
+    <tab heading="Նոր անձ">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Նախնական անունը:</legend>
+        <div class="form-group row">
+          <label for="name-initial-arm" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameArm"
+                   placeholder="մուտքագրեք հայերեն տարբերակը" id="name-initial-arm">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name-initial-rus" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameRus"
+                   placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-initial-rus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name-initial-eng" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameEng"
+                   placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-initial-eng">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Ճշտված անունը:</legend>
+        <div class="form-group row">
+          <label for="name-final-arm" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameArm"
+                   placeholder="մուտքագրեք հայերեն տարբերակը" id="name-final-arm">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name-final-rus" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameRus"
+                   placeholder="մուտքագրեք ռուսերեն տարբերակը" id="name-final-rus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name-final-eng" class="col-1 col-form-label"></label>
+          <div class="col-11">
+            <input class="form-control" [(ngModel)]="newJournal.nameEng"
+                   placeholder="մուտքագրեք անգլերեն տարբերակը" id="name-final-eng">
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group row">
+        <div class="col-md-9">
+
+        </div>
+        <div class="col-md-3">
+          <button (click)="addJournal()" class="btn btn-success"><i class="far fa-save fa-lg"></i> Հիշել</button>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
