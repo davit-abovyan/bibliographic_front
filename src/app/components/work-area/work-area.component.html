@@ -7,7 +7,7 @@
           <span class="window-heading unselectable">{{row.arm}}</span>
           <div class="close" (click)="closeSection(row.key)"><i class="fas fa-window-close fa-sm" ></i></div>
         </div>
-        <div class="window-body" *ngIf="row.key == 'operator'"><app-operator></app-operator></div>
+        <div class="window-body" *ngIf="row.key == 'operator'" ><app-operator></app-operator></div>
         <div class="window-body" *ngIf="row.key == 'person'"><app-person></app-person></div>
         <div class="window-body" *ngIf="row.key == 'science-field'"><app-science-field></app-science-field></div>
         <div class="window-body" *ngIf="row.key == 'boh'"><app-boh></app-boh></div>
@@ -19,5 +19,11 @@
   </div>
 </div>
 <div class="right-panel">
-
+  <div *ngFor="let menu of data" class="window-menu-left-container">
+    <div *ngFor="let row of menu.rows">
+      <div *ngIf="page.indexOf(row.key)>-1" (click)="focuseSelection(row.key)" class="window-menu-left">
+        <i class='far fa-{{row.icon==undefined ? "empty" : row.icon}} fa-lg'></i> {{row.arm}}
+      </div>
+    </div>
+  </div>
 </div>

@@ -19,7 +19,7 @@ export class OperatorComponent implements OnInit {
 
   public newOperator: string;
   public editedOperator: string;
-  public isAdmin: boolean;
+  public isAdmin = false;
 
   constructor(private apiService: ApiService, private modalService: BsModalService) {
   }
@@ -62,13 +62,18 @@ export class OperatorComponent implements OnInit {
     this.editRowId = id;
   }
 
-  removeObject(text: string): void {
-    this.showConfirmationModal(text);
+  removeObject(id: string, text: string): void {
+    this.showConfirmationModal(id, text);
   }
 
-  editName(id: number): void {
-    if (this.editedOperator === undefined) {
-      this.editRowId = -1;
+  cancelEdit(): void {
+    this.editedOperator = '';
+    this.editRowId = -1;
+  }
+
+  editOperator(id: number): void {
+    if (this.editedOperator === undefined || this.editedOperator === '') {
+        this.cancelEdit();
     } else {
       const body = '{"id":"' + id + '", "name": "' + this.editedOperator + '", "reviewer": ' + this.isAdmin + '}';
       this.apiService.editOperator(JSON.parse(body))
@@ -106,11 +111,11 @@ export class OperatorComponent implements OnInit {
     );
   }
 
-  public showConfirmationModal(id: string): void {
+  public showConfirmationModal(id: string, text: string): void {
     const modal = this.modalService.show(ConfirmationModalComponent);
     (<ConfirmationModalComponent>modal.content).showConfirmationModal(
       'Հեռացնել գրառումը',
-      'Ցանկանում եք հեռացնել ' + id + ' գրառումը?'
+      'Ցանկանում եք հեռացնել ' + text + ' գրառումը?'
     );
 
     (<ConfirmationModalComponent>modal.content).onClose.subscribe(result => {

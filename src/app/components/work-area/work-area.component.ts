@@ -6,12 +6,10 @@ import {ConfigService} from '../../services/config.service';
 @Component({
   selector: 'app-work-area',
   templateUrl: './work-area.component.html',
-  styleUrls: ['./work-area.component.css']
+  styleUrls: ['./work-area.component.less']
 })
 export class WorkAreaComponent implements OnInit {
 
-  // used for dragability
-  zInd = 1;
   useHandle = true;
   inBounds = true;
   edge = {
@@ -41,8 +39,7 @@ export class WorkAreaComponent implements OnInit {
   }
 
   focuseSelection(id: string): void {
-    this.zInd = +this.zInd + 1;
-    document.getElementById(id).style.zIndex = '' + this.zInd;
+    this.configService.focusWindow(id);
   }
 
 }

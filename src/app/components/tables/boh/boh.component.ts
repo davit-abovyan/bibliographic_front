@@ -89,6 +89,10 @@ export class BohComponent implements OnInit {
     );
   }
 
+  cancelEdit(): void {
+    this.editedBoh = '';
+    this.editRowId = -1;
+  }
 
   public showNotification(code: number, error: string) {
     const modal = this.modalService.show(NotificationModalComponent);

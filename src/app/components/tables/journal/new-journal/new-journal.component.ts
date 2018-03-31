@@ -34,6 +34,9 @@ export class NewJournalComponent implements OnInit {
   setOperatorId(id: number): void {
     this.newJournal.operatorId = id;
   }
+  setEditorId(id: number): void {
+    this.newJournal.editor = id;
+  }
 
   getJournal(): void {
     this.apiService.getJournal().subscribe(objects => {
@@ -83,8 +86,14 @@ export class NewJournalComponent implements OnInit {
         }`;
     this.apiService.addJournal(JSON.parse(body))
       .subscribe(() => {
+        this.showSuccessMessage(this.newJournal.code);
         this.newJournal = new Journal({});
         this.getJournal();
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 409) {
+          this.showNotification(err.status, err.error);
+        }
+        console.log(err.status + ' ' + err.error);
       });
   }
 
@@ -130,6 +139,8 @@ export class NewJournalComponent implements OnInit {
       }`;
     this.apiService.addJournal(JSON.parse(body))
       .subscribe(() => {
+          this.newJournal = new Journal({});
+          this.showSuccessMessage(id);
           this.getJournal();
         }, (err: HttpErrorResponse) => {
           if (err.status === 409) {
@@ -249,6 +260,13 @@ export class NewJournalComponent implements OnInit {
       );
   }
 
+  public showSuccessMessage(code: any) {
+    const modal = this.modalService.show(NotificationModalComponent);
+    (<NotificationModalComponent>modal.content).showNotificationModal(
+      'Գրառման հաստատում',
+       code + ' գրառւմը հաջողությամբ գրանցվեց'
+    );
+  }
 
   public showNotification(code: number, error: string) {
     const modal = this.modalService.show(NotificationModalComponent);

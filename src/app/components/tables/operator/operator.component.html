@@ -16,21 +16,28 @@
       <td>{{row.id}}</td>
       <td>
         {{ editRowId != row.id ? row.name : ''}}
-        <input *ngIf="editRowId == row.id" (blur)="editName(row.id)" [(ngModel)]="editedOperator"
+        <input *ngIf="editRowId == row.id" [(ngModel)]="editedOperator"
                class="form-control" placeholder="{{row.name}}" />
       </td>
       <td>
         <input *ngIf="editRowId != row.id" class="form-check-input" type="checkbox" disabled="true" (click)="editIsAdmin(row.id)" (ngModel)="isAdmin" [checked]="row.reviewer" />
-        <select *ngIf="editRowId == row.id" class="form-control" (ngModel)="isAdmin" >
+        <select *ngIf="editRowId == row.id" class="form-control" [(ngModel)]="isAdmin" >
           <option value="true" [selected]="row.reviewer">Այո</option>
           <option value="false" [selected]="!row.reviewer" >Ոչ</option>
         </select>
 
       </td>
       <td class="toolbar">
-        <span style="cursor: pointer" (click)="removeObject(row.text)"><i class="far fa-trash-alt fa-fw"></i></span>
-        <span style="cursor: pointer" (click)="copyObject(row.id)"><i class="far fa-copy fa-fw"></i></span>
-        <span style="cursor: pointer" (click)="editObject(row.id)"><i class="far fa-edit fa-fw"></i></span>
+        <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removeObject(row.id, row.name)">
+          <i class="far fa-trash-alt fa-fw"></i></span>
+        <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="copyObject(row.id)">
+          <i class="far fa-copy fa-fw"></i></span>
+        <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="editObject(row.id)">
+          <i class="far fa-edit fa-fw"></i></span>
+        <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="editOperator(row.id)"><i
+          class="far fa-save fa-fw"></i></span>
+        <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="cancelEdit()"><i
+          class="fas fa-undo-alt fa-fw"></i></span>
       </td>
     </tr>
     </tbody>

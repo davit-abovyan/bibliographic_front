@@ -72,14 +72,13 @@
           </div>
           <label for="main_operatorId" class="col-2 col-form-label">Օպերատոր։ </label>
           <div class="col-4">
-            <app-typeahead id="main_operatorId" objectBase="'person'"
+            <app-typeahead id="main_operatorId" objectBase="'operator'"
                            (notify)="setOperatorId($event)"></app-typeahead>
           </div>
         </div>
       </fieldset>
       <div class="form-group row">
         <div class="col-md-9">
-
         </div>
         <div class="col-md-3">
           <button (click)="addJournal()" class="btn btn-success">
@@ -266,6 +265,13 @@
               <option value="true">Այո</option>
               <option value="false">Ոչ</option>
             </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="general_editor" class="col-2 col-form-label">Խմբագրող։ </label>
+          <div class="col-4">
+            <app-typeahead id="general_editor" objectBase="'person'"
+                           (notify)="setEditorId($event)"></app-typeahead>
           </div>
         </div>
       </fieldset>

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import {ConfigService} from './services/config.service';
 
 
 @Component({

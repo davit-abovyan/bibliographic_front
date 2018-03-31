@@ -1,0 +1,91 @@
+ // Less variables
+@leftMenuWidth: 200px;
+@windowWidths:      100px, 200px, 300px, 500px, 700px, 900px, 100%;
+@windowWidthLabels: XXS,   XS,    S,     M,     L,     XL,    XXL;
+
+// Less Mixins
+
+ // Generating different widths for windows
+.windowWidth(@x) when (@x > 0) {
+  .windowWidth((@x - 1));
+  @val: extract(@windowWidths, @x);
+  @name: extract(@windowWidthLabels, @x);
+  .window-size-@{name}{
+    width:@val;
+  }
+}
+
+.windowWidth(length(@windowWidths));
+
+.frame{
+  position:relative;
+  width: ~'calc(100% - @{leftMenuWidth})';
+  height: ~'calc(100vh - 80px)';
+  border: 3px ridge gray;
+  float: right;
+}
+
+.right-panel{
+  width: @leftMenuWidth;
+  height: ~'calc(100vh - 80px)';
+  background-color: silver;
+}
+
+.window {
+  border:1px solid gray;
+  position:absolute; left:10px; top:10px;
+  padding: 0px;
+  z-index: 1;
+}
+
+
+
+.window-heading{
+  display: block;
+  color: white;
+  font-weight: bold;
+  text-indent: 5px;
+}
+
+.window-body{
+  padding:3px;
+  background-color: #cddbf2;
+}
+
+.window-menu{
+  width: 100%;
+  margin:0px;
+  padding: 2px;
+  height: 30px;
+  background-color: cornflowerblue;
+}
+
+.window-menu-left-container{
+  width: @leftMenuWidth;
+  position: fixed;
+  left: 0px;
+  bottom: 20px;
+}
+
+.window-menu-left{
+  &:extend(.window-menu);
+  &:extend(.window-heading);
+  font-weight: normal;
+  border-top: 1px solid blue;
+  cursor: pointer;
+}
+
+.window-menu-left:hover{
+   background-color: #93b1e2;
+ }
+
+.close{
+  position: absolute;
+  top:0px;
+  right: 20px;
+  height:10px;
+  width: 10px;
+}
+.ng-draggable {
+  cursor: move;
+}

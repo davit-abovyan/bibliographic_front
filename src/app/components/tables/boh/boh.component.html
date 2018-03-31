@@ -18,9 +18,16 @@
         <input *ngIf="editRowId == row.id" (blur)="edit(row.id)" [(ngModel)]="editedBoh" class="form-control" placeholder="{{row.name}}" />
       </td>
       <td class="toolbar">
-        <span style="cursor: pointer" (click)="removeBoh(row.id)"><i class="far fa-trash-alt fa-fw"></i></span>
-        <span style="cursor: pointer" (click)="copyBoh(row.id)"><i class="far fa-copy fa-fw"></i></span>
-        <span style="cursor: pointer" (click)="editBoh(row.id)"><i class="far fa-edit fa-fw"></i></span>
+        <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="removeBoh(row.id)">
+          <i class="far fa-trash-alt fa-fw"></i></span>
+        <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="copyBoh(row.id)">
+          <i class="far fa-copy fa-fw"></i></span>
+        <span *ngIf="editRowId != row.id" style="cursor: pointer" (click)="editBoh(row.id)">
+          <i class="far fa-edit fa-fw"></i></span>
+        <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="editBoh(row.id)"><i
+          class="far fa-save fa-fw"></i></span>
+        <span *ngIf="editRowId == row.id" style="cursor: pointer" (click)="cancelEdit()"><i
+          class="fas fa-undo-alt fa-fw"></i></span>
       </td>
     </tr>
     </tbody>
