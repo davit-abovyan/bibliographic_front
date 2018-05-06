@@ -1,5 +1,9 @@
-<app-logo></app-logo>
-<app-top-nemu (notify)='onSelect($event)'></app-top-nemu>
-<app-controll-panel [page]='state'></app-controll-panel>
-<app-work-area [page]='state'></app-work-area>
-
+<div *ngIf="loggedIn">
+  <app-logo></app-logo>
+  <app-top-nemu (notify)='onSelect($event)'></app-top-nemu>
+  <app-controll-panel [page]='state'></app-controll-panel>
+  <app-work-area [page]='state'></app-work-area>
+</div>
+<div *ngIf="!loggedIn">
+  <app-log-in></app-log-in>
+</div>

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ConfigService} from '../../services/config.service';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'app-top-nemu',
@@ -21,4 +22,8 @@ export class TopNemuComponent implements OnInit {
     this.notify.emit(page);
   }
 
+  signOut(): void {
+    Cookie.delete('auth');
+    window.location.reload();
+  }
 }

@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as _ from 'lodash';
 import {HttpEvent} from '@angular/common/http/src/response';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import {Operator} from '../entity/operator';
 import {Person} from '../entity/person';
@@ -10,13 +11,16 @@ import {ScienceField} from '../entity/scienceField';
 import {Journal} from '../entity/journal';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+  headers: new HttpHeaders()
+    .append('Content-Type', 'application/json;charset=UTF-8')
+    .append('Authorization', 'Basic ' + Cookie.get('auth'))
 };
+
 
 @Injectable()
 export class ApiService {
 
-  private host = 'http://63.142.252.60:8080/api/v1.0/';
+  private host = 'http://localhost:8080/api/v1.0/';
   private search = '/search/';
 
   public boh = 'boh';

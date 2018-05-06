@@ -26,6 +26,7 @@ import {ConfirmationModalComponent} from './components/templates/confirmation-mo
 import { NotificationModalComponent } from './components/templates/notification-modal/notification-modal.component';
 import {ConfigService} from './services/config.service';
 import { NewJournalComponent } from './components/tables/journal/new-journal/new-journal.component';
+import { LogInComponent } from './components/log-in/log-in.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NewJournalComponent } from './components/tables/journal/new-journal/new
     ControllPanelComponent,
     ConfirmationModalComponent,
     NotificationModalComponent,
-    NewJournalComponent
+    NewJournalComponent,
+    LogInComponent
   ],
   imports: [
     HttpClientModule,

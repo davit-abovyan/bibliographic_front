@@ -1,6 +1,6 @@
 <div class="top-menu">
   <div class="btn-group">
-    <div *ngFor="let menuItem of menu" class="btn-group" ngbDropdown role="group"
+    <div *ngFor="let menuItem of menu" class="btn-group " ngbDropdown role="group"
          aria-label="Button group with nested dropdown">
       <button class="btn btn-primary" ngbDropdownToggle>{{menuItem.arm}}</button>
       <div class="dropdown-menu" ngbDropdownMenu>
@@ -9,5 +9,10 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="right">
+    <button class="dropdown-item clickable" (click)="signOut()">
+      <i class='far fa-sign-out-alt fa-lg'></i>
+    </button>
   </div>
 </div>
